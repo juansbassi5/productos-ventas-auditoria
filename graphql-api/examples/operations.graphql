@@ -1,0 +1,27 @@
+query TodosLosProductos {
+  products {
+    id
+    name
+    price
+    stock
+    category
+    description
+  }
+}
+
+query ProductosFiltrados {
+  products(filter: { category: "electronica", inStock: true, minPrice: 50 }) {
+    id
+    name
+    price
+    stock
+  }
+}
+
+mutation NormalizarCategoria($id: ID!) {
+  updateProduct(id: $id, input: { category: "electronica" }) {
+    id
+    name
+    category
+  }
+}

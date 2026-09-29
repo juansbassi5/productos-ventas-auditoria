@@ -1,0 +1,16 @@
+{
+  "name": "@productos-ventas/mcp-server",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test",
+    "check": "node --check src/index.js && node --check src/graphql-client.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "dotenv": "^17.2.3",
+    "zod": "^4.6.5"
+  }
+}

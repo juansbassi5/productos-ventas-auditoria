@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: productos-ventas-graphql
+    runtime: node
+    plan: free
+    buildCommand: npm ci --workspace graphql-api --include-workspace-root
+    startCommand: npm run start --workspace graphql-api
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: MONGODB_URI
+        sync: false

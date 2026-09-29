@@ -1,0 +1,18 @@
+{
+  "name": "@productos-ventas/quality-agent",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "audit": "node src/index.js --audit",
+    "fix": "node src/index.js --fix",
+    "test": "node --test",
+    "check": "node --check src/index.js && node --check src/audit.js"
+  },
+  "dependencies": {
+    "@ai-sdk/openai": "^4.0.81",
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "ai": "^7.0.122",
+    "dotenv": "^17.2.3"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "productos-ventas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "graphql-api",
+    "mcp-server",
+    "quality-agent"
+  ],
+  "scripts": {
+    "dev:api": "npm run dev --workspace graphql-api",
+    "start:api": "npm run start --workspace graphql-api",
+    "seed": "npm run seed --workspace graphql-api",
+    "start:mcp": "npm run start --workspace mcp-server",
+    "agent:audit": "npm run audit --workspace quality-agent",
+    "agent:fix": "npm run fix --workspace quality-agent",
+    "test": "npm test --workspaces --if-present",
+    "check": "npm run check --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
