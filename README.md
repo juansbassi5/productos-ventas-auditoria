@@ -80,7 +80,7 @@ La API dispone de:
 Crear `mcp-server/.env`:
 
 ```env
-GRAPHQL_URL=http://localhost:4000/graphql
+GRAPHQL_URL=https://productos-ventas-graphql.onrender.com/graphql
 GRAPHQL_TIMEOUT_MS=15000
 ```
 
@@ -146,6 +146,9 @@ El agente:
 Precios, stock, descripciones y categorías desconocidas quedan para revisión humana porque corregirlos exigiría inventar información.
 
 ## 7. Deploy en Render
+
+- Repositorio: <https://github.com/juansbassi5/productos-ventas-auditoria>
+- API GraphQL: <https://productos-ventas-graphql.onrender.com/graphql>
 
 1. Subir el repositorio a GitHub sin archivos `.env`.
 2. En Render, crear el servicio usando `render.yaml` o estos valores:

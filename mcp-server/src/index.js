@@ -28,18 +28,12 @@ server.registerTool(
   'get_products',
   {
     title: 'Obtener productos',
-    description: 'Obtiene el catálogo completo o lo filtra por categoría, nombre, precio o stock.',
-    inputSchema: {
-      category: z.string().min(1).optional().describe('Categoría sin distinguir mayúsculas.'),
-      search: z.string().min(1).optional().describe('Texto contenido en el nombre.'),
-      minPrice: z.number().optional(),
-      maxPrice: z.number().optional(),
-      inStock: z.boolean().optional(),
-    },
+    description: 'Obtiene el listado completo de productos desde la API GraphQL.',
+    inputSchema: {},
   },
-  async (input) => {
+  async () => {
     try {
-      return success({ products: await getProducts(input) });
+      return success({ products: await getProducts() });
     } catch (error) {
       return failure(error);
     }
@@ -50,13 +44,15 @@ server.registerTool(
   'update_product',
   {
     title: 'Actualizar producto',
-    description: 'Actualiza el precio, stock, categoría o descripción de un producto por ID.',
+    description: 'Actualiza el precio, stock o categoría de un producto por ID.',
     inputSchema: {
-      id: z.string().min(1).describe('ID MongoDB del producto.'),
-      price: z.number().positive().optional(),
-      stock: z.number().int().nonnegative().optional(),
-      category: z.string().min(1).optional(),
-      description: z.string().optional(),
+      id: z
+        .string()
+        .regex(/^[a-f\d]{24}$/i)
+        .describe('ID MongoDB de 24 caracteres hexadecimales.'),
+      price: z.number().positive().optional().describe('Nuevo precio, mayor que cero.'),
+      stock: z.number().int().nonnegative().optional().describe('Nuevo stock entero, desde cero.'),
+      category: z.string().trim().min(1).optional().describe('Nueva categoría del producto.'),
     },
   },
   async ({ id, ...input }) => {
