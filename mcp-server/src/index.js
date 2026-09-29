@@ -1,9 +1,15 @@
 #!/usr/bin/env node
-import 'dotenv/config';
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js';
+import { config } from 'dotenv';
+import { fileURLToPath } from 'node:url';
 import { z } from 'zod';
 import { getProducts, updateProduct } from './graphql-client.js';
+
+config({
+  path: fileURLToPath(new URL('../.env', import.meta.url)),
+  quiet: true,
+});
 
 const server = new McpServer({
   name: 'productos-ventas',
